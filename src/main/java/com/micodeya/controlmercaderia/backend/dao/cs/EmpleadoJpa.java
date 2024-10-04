@@ -1,5 +1,7 @@
 package com.micodeya.controlmercaderia.backend.dao.cs;
 
+import java.math.BigDecimal;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.micodeya.controlmercaderia.backend.entities.cs.Empleado;
