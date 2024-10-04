@@ -1,0 +1,59 @@
+## Entorno de .vscode/settings.json, Ej: rest-client-example.json. 
+## Seleccionar entorno con CMD+ALT+E
+@SOY_VARIABLE=Soy el contenido
+
+### Cargo listar
+curl --location --request POST '{{controlmercaderia_api}}/api/cs/cargo/listar' \
+# curl --location --request POST '{{controlmercaderia_api}}/api/cs/cargo/listar/c/cuentaCore' \
+--header 'Authorization: Bearer {{controlmercaderia_token}}' \
+--header 'xrn-so: web' --header 'xrn-version: 1.0.0' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "all": false,
+    "page": 1,
+    "limit": 10,
+    "orderBy": "nombre asc",
+    "filterList":[],
+    "atributos":"",
+    "detalles":[],
+    "extra":""
+}'
+###"filterList":  [{"data":"idCargo", "op":"eq", "value":100, "group":"and"}]
+
+
+
+### Cargo agregar
+curl --location --request POST '{{controlmercaderia_api}}/api/cs/cargo/agregar' \
+--header 'Authorization: Bearer {{controlmercaderia_token}}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "cargo": "",
+	"nivelAcceso": "",
+	"activo": true,
+    "descripcion": null
+}'
+
+
+### Cargo modificar
+curl --location --request POST '{{controlmercaderia_api}}/api/cs/cargo/modificar' \
+--header 'Authorization: Bearer {{controlmercaderia_token}}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "idCargo": 0,
+    "cargo": "",
+	"nivelAcceso": "",
+	"activo": true,
+    "descripcion": null
+}'
+
+
+### Cargo eliminar
+curl --location --request POST '{{controlmercaderia_api}}/api/zk/usuario/eliminar' \
+--header 'Authorization: Bearer {{controlmercaderia_token}}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "idCargo": 0
+}'
+
+// KGC-NOREPLACE-OTROS-INI
+// KGC-NOREPLACE-OTROS-FIN

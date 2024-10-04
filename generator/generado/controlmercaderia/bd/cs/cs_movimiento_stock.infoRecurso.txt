@@ -1,0 +1,5 @@
+idRecurso: 95, grupo: cs, tipo: VIS => Movimiento Stock - Menu
+idRecurso: 96, grupo: cs, tipo: FUN => Movimiento Stock - Listar
+idRecurso: 97, grupo: cs, tipo: FUN => Movimiento Stock - Agregar
+idRecurso: 98, grupo: cs, tipo: FUN => Movimiento Stock - Modificar
+idRecurso: 99, grupo: cs, tipo: FUN => Movimiento Stock - Eliminar

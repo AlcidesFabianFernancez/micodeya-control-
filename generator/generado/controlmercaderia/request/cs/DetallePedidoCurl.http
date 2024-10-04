@@ -1,0 +1,59 @@
+## Entorno de .vscode/settings.json, Ej: rest-client-example.json. 
+## Seleccionar entorno con CMD+ALT+E
+@SOY_VARIABLE=Soy el contenido
+
+### DetallePedido listar
+curl --location --request POST '{{controlmercaderia_api}}/api/cs/detallePedido/listar' \
+# curl --location --request POST '{{controlmercaderia_api}}/api/cs/detallePedido/listar/c/cuentaCore' \
+--header 'Authorization: Bearer {{controlmercaderia_token}}' \
+--header 'xrn-so: web' --header 'xrn-version: 1.0.0' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "all": false,
+    "page": 1,
+    "limit": 10,
+    "orderBy": "nombre asc",
+    "filterList":[],
+    "atributos":"",
+    "detalles":[],
+    "extra":""
+}'
+###"filterList":  [{"data":"idDetallePedido", "op":"eq", "value":100, "group":"and"}]
+
+
+
+### DetallePedido agregar
+curl --location --request POST '{{controlmercaderia_api}}/api/cs/detallePedido/agregar' \
+--header 'Authorization: Bearer {{controlmercaderia_token}}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "pedido": {"idPedidos":0},
+	"producto": {"idProducto":0},
+	"cantidadPedido": 0,
+    "precioUnitario": null
+}'
+
+
+### DetallePedido modificar
+curl --location --request POST '{{controlmercaderia_api}}/api/cs/detallePedido/modificar' \
+--header 'Authorization: Bearer {{controlmercaderia_token}}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "idDetallePedido": 0,
+    "pedido": {"idPedidos":0},
+	"producto": {"idProducto":0},
+	"cantidadPedido": 0,
+    "precioUnitario": null
+}'
+
+
+### DetallePedido eliminar
+curl --location --request POST '{{controlmercaderia_api}}/api/zk/usuario/eliminar' \
+--header 'Authorization: Bearer {{controlmercaderia_token}}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "idDetallePedido": 0
+}'
+
+// KGC-NOREPLACE-OTROS-INI
+// KGC-NOREPLACE-OTROS-FIN

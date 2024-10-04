@@ -1,0 +1,91 @@
+## Entorno de .vscode/settings.json, Ej: rest-client-example.json. 
+## Seleccionar entorno con CMD+ALT+E
+@SOY_VARIABLE=Soy el contenido
+
+### Usuario listar
+curl --location --request POST '{{controlmercaderia_api}}/api/cs/usuario/listar' \
+# curl --location --request POST '{{controlmercaderia_api}}/api/cs/usuario/listar/c/cuentaCore' \
+--header 'Authorization: Bearer {{controlmercaderia_token}}' \
+--header 'xrn-so: web' --header 'xrn-version: 1.0.0' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "all": false,
+    "page": 1,
+    "limit": 10,
+    "orderBy": "nombre asc",
+    "filterList":[],
+    "atributos":"",
+    "detalles":[],
+    "extra":""
+}'
+###"filterList":  [{"data":"idUsuario", "op":"eq", "value":100, "group":"and"}]
+
+
+### Usuario agregar 
+POST {{controlmercaderia_api}}/api/cs/usuario/agregar
+Authorization: Bearer {{controlmercaderia_token}}
+xrn-so: web; xrn-version: 1.0.0
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4565YBAI64cuQegW
+
+------WebKitFormBoundary7MA4565YBAI64cuQegW
+Content-Disposition: form-data; name="model"
+
+{
+    "usuario": "",
+	"contrasenha": "",
+	"cargo": {"idCargo":0},
+	"empleado": {"idEmpleado":0},
+	"activo": true,
+    "imagenPortada": null
+}
+------WebKitFormBoundary7MA4565YBAI64cuQegW
+### para multimedia/adjunto
+### en el {{atributo}} del model agregar=[{\"name\":\"lechu.jpg\",\"type\":\"image/jpeg\",\"size\":183612,\"lastModified\":1697911853032,\"fecha\":\"21/10/2023 15:12:48\",\"uuidName\":\"1697911968230-a7e4f835-b90c-4322-8efc-74eb780ebab4.jpg\"}]
+### agregar el archivo adjunto debajo de: ------WebKitFormBoundary7MA4565YBAI64cuQegW
+#### Content-Disposition: form-data; name="{{atributo}}Files"; filename="lechu.jpg"
+#### Content-Type: image/jpeg
+#### 
+#### < ./lechu.jpg
+#### ------WebKitFormBoundary7MA4565YBAI64cuQegW--
+
+
+### Usuario modificar 
+POST {{controlmercaderia_api}}/api/cs/usuario/modificar
+Authorization: Bearer {{controlmercaderia_token}}
+xrn-so: web; xrn-version: 1.0.0
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4565YBAI64cuQegW
+
+------WebKitFormBoundary7MA4565YBAI64cuQegW
+Content-Disposition: form-data; name="model"
+
+{
+    "idUsuario": 0,
+    "usuario": "",
+	"contrasenha": "",
+	"cargo": {"idCargo":0},
+	"empleado": {"idEmpleado":0},
+	"activo": true,
+    "imagenPortada": null
+}
+------WebKitFormBoundary7MA4565YBAI64cuQegW
+### para multimedia/adjunto
+### en el {{atributo}} del model agregar=[{\"name\":\"lechu.jpg\",\"type\":\"image/jpeg\",\"size\":183612,\"lastModified\":1697911853032,\"fecha\":\"21/10/2023 15:12:48\",\"uuidName\":\"1697911968230-a7e4f835-b90c-4322-8efc-74eb780ebab4.jpg\"}]
+### agregar el archivo adjunto debajo de: ------WebKitFormBoundary7MA4565YBAI64cuQegW
+#### Content-Disposition: form-data; name="{{atributo}}Files"; filename="lechu.jpg"
+#### Content-Type: image/jpeg
+#### 
+#### < ./lechu.jpg
+#### ------WebKitFormBoundary7MA4565YBAI64cuQegW--
+
+
+### Usuario eliminar
+curl --location --request POST '{{controlmercaderia_api}}/api/zk/usuario/eliminar' \
+--header 'Authorization: Bearer {{controlmercaderia_token}}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "idUsuario": 0
+}'
+
+// KGC-NOREPLACE-OTROS-INI
+// KGC-NOREPLACE-OTROS-FIN
+

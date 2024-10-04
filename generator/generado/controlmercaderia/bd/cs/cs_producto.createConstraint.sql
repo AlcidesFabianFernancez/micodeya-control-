@@ -1,0 +1,22 @@
+
+/* CONSTRAINT CS_PRODUCTO */
+ALTER TABLE CS_PRODUCTO 
+	ADD CONSTRAINT "CS_PRODUCTO-id_categoria_fk"  FOREIGN KEY (id_categoria)
+	REFERENCES cs_categoria (id_categoria) ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

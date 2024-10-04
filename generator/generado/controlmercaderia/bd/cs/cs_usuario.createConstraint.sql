@@ -1,0 +1,24 @@
+
+/* CONSTRAINT CS_USUARIO */
+ALTER TABLE CS_USUARIO 
+	ADD CONSTRAINT "CS_USUARIO-id_cargo_fk"  FOREIGN KEY (id_cargo)
+	REFERENCES cs_cargo (id_cargo) ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+ALTER TABLE CS_USUARIO 
+	ADD CONSTRAINT "CS_USUARIO-id_empleado_fk"  FOREIGN KEY (id_empleado)
+	REFERENCES cs_empleado (id_empleado) ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

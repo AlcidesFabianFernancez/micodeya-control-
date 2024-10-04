@@ -1,0 +1,16 @@
+
+/* CONSTRAINT CS_PEDIDOS */
+ALTER TABLE CS_PEDIDOS 
+	ADD CONSTRAINT "CS_PEDIDOS-id_proveedor_fk"  FOREIGN KEY (id_proveedor)
+	REFERENCES cs_proveedores (id_proveedores) ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+
+
+
+
+
+
+
+
+
+

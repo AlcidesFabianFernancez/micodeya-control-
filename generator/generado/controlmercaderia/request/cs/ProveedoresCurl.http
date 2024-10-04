@@ -1,0 +1,59 @@
+## Entorno de .vscode/settings.json, Ej: rest-client-example.json. 
+## Seleccionar entorno con CMD+ALT+E
+@SOY_VARIABLE=Soy el contenido
+
+### Proveedores listar
+curl --location --request POST '{{controlmercaderia_api}}/api/cs/proveedores/listar' \
+# curl --location --request POST '{{controlmercaderia_api}}/api/cs/proveedores/listar/c/cuentaCore' \
+--header 'Authorization: Bearer {{controlmercaderia_token}}' \
+--header 'xrn-so: web' --header 'xrn-version: 1.0.0' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "all": false,
+    "page": 1,
+    "limit": 10,
+    "orderBy": "nombre asc",
+    "filterList":[],
+    "atributos":"",
+    "detalles":[],
+    "extra":""
+}'
+###"filterList":  [{"data":"idProveedores", "op":"eq", "value":100, "group":"and"}]
+
+
+
+### Proveedores agregar
+curl --location --request POST '{{controlmercaderia_api}}/api/cs/proveedores/agregar' \
+--header 'Authorization: Bearer {{controlmercaderia_token}}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "proveedor": "",
+	"contacto": "",
+	"activo": true,
+    "direccion": null
+}'
+
+
+### Proveedores modificar
+curl --location --request POST '{{controlmercaderia_api}}/api/cs/proveedores/modificar' \
+--header 'Authorization: Bearer {{controlmercaderia_token}}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "idProveedores": 0,
+    "proveedor": "",
+	"contacto": "",
+	"activo": true,
+    "direccion": null
+}'
+
+
+### Proveedores eliminar
+curl --location --request POST '{{controlmercaderia_api}}/api/zk/usuario/eliminar' \
+--header 'Authorization: Bearer {{controlmercaderia_token}}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "idProveedores": 0
+}'
+
+// KGC-NOREPLACE-OTROS-INI
+// KGC-NOREPLACE-OTROS-FIN

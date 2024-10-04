@@ -1,0 +1,5 @@
+idRecurso: 95, grupo: cs, tipo: VIS => Categoria - Menu
+idRecurso: 96, grupo: cs, tipo: FUN => Categoria - Listar
+idRecurso: 97, grupo: cs, tipo: FUN => Categoria - Agregar
+idRecurso: 98, grupo: cs, tipo: FUN => Categoria - Modificar
+idRecurso: 99, grupo: cs, tipo: FUN => Categoria - Eliminar

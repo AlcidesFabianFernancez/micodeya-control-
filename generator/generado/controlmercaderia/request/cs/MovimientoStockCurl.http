@@ -1,0 +1,61 @@
+## Entorno de .vscode/settings.json, Ej: rest-client-example.json. 
+## Seleccionar entorno con CMD+ALT+E
+@SOY_VARIABLE=Soy el contenido
+
+### MovimientoStock listar
+curl --location --request POST '{{controlmercaderia_api}}/api/cs/movimientoStock/listar' \
+# curl --location --request POST '{{controlmercaderia_api}}/api/cs/movimientoStock/listar/c/cuentaCore' \
+--header 'Authorization: Bearer {{controlmercaderia_token}}' \
+--header 'xrn-so: web' --header 'xrn-version: 1.0.0' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "all": false,
+    "page": 1,
+    "limit": 10,
+    "orderBy": "nombre asc",
+    "filterList":[],
+    "atributos":"",
+    "detalles":[],
+    "extra":""
+}'
+###"filterList":  [{"data":"idMovimientoStock", "op":"eq", "value":100, "group":"and"}]
+
+
+
+### MovimientoStock agregar
+curl --location --request POST '{{controlmercaderia_api}}/api/cs/movimientoStock/agregar' \
+--header 'Authorization: Bearer {{controlmercaderia_token}}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "producto": {"idProducto":0},
+	"cantidadMovimiento": 0,
+	"tipoMovimiento": "",
+	"usuario": {"idUsuario":0}
+    
+}'
+
+
+### MovimientoStock modificar
+curl --location --request POST '{{controlmercaderia_api}}/api/cs/movimientoStock/modificar' \
+--header 'Authorization: Bearer {{controlmercaderia_token}}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "idMovimientoStock": 0,
+    "producto": {"idProducto":0},
+	"cantidadMovimiento": 0,
+	"tipoMovimiento": "",
+	"usuario": {"idUsuario":0}
+    
+}'
+
+
+### MovimientoStock eliminar
+curl --location --request POST '{{controlmercaderia_api}}/api/zk/usuario/eliminar' \
+--header 'Authorization: Bearer {{controlmercaderia_token}}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "idMovimientoStock": 0
+}'
+
+// KGC-NOREPLACE-OTROS-INI
+// KGC-NOREPLACE-OTROS-FIN

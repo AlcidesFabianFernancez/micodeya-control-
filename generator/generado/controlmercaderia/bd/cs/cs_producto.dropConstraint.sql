@@ -1,0 +1,21 @@
+
+/* CONSTRAINT DROP CS_PRODUCTO */
+ALTER TABLE IF EXISTS CS_PRODUCTO 
+	DROP  CONSTRAINT IF EXISTS "CS_PRODUCTO-id_categoria_fk"; 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
