@@ -6,54 +6,6 @@ idRecurso: 97, grupo: cs, tipo: FUN => Cargo - Agregar
 idRecurso: 98, grupo: cs, tipo: FUN => Cargo - Modificar
 idRecurso: 99, grupo: cs, tipo: FUN => Cargo - Eliminar
 
-idRecurso: 95, grupo: cs, tipo: VIS => Categoria - Menu
-idRecurso: 96, grupo: cs, tipo: FUN => Categoria - Listar
-idRecurso: 97, grupo: cs, tipo: FUN => Categoria - Agregar
-idRecurso: 98, grupo: cs, tipo: FUN => Categoria - Modificar
-idRecurso: 99, grupo: cs, tipo: FUN => Categoria - Eliminar
-
-idRecurso: 95, grupo: cs, tipo: VIS => Detalle Pedido - Menu
-idRecurso: 96, grupo: cs, tipo: FUN => Detalle Pedido - Listar
-idRecurso: 97, grupo: cs, tipo: FUN => Detalle Pedido - Agregar
-idRecurso: 98, grupo: cs, tipo: FUN => Detalle Pedido - Modificar
-idRecurso: 99, grupo: cs, tipo: FUN => Detalle Pedido - Eliminar
-
-idRecurso: 95, grupo: cs, tipo: VIS => Empleado - Menu
-idRecurso: 96, grupo: cs, tipo: FUN => Empleado - Listar
-idRecurso: 97, grupo: cs, tipo: FUN => Empleado - Agregar
-idRecurso: 98, grupo: cs, tipo: FUN => Empleado - Modificar
-idRecurso: 99, grupo: cs, tipo: FUN => Empleado - Eliminar
-
-idRecurso: 95, grupo: cs, tipo: VIS => Movimiento Stock - Menu
-idRecurso: 96, grupo: cs, tipo: FUN => Movimiento Stock - Listar
-idRecurso: 97, grupo: cs, tipo: FUN => Movimiento Stock - Agregar
-idRecurso: 98, grupo: cs, tipo: FUN => Movimiento Stock - Modificar
-idRecurso: 99, grupo: cs, tipo: FUN => Movimiento Stock - Eliminar
-
-idRecurso: 95, grupo: cs, tipo: VIS => Pedidos - Menu
-idRecurso: 96, grupo: cs, tipo: FUN => Pedidos - Listar
-idRecurso: 97, grupo: cs, tipo: FUN => Pedidos - Agregar
-idRecurso: 98, grupo: cs, tipo: FUN => Pedidos - Modificar
-idRecurso: 99, grupo: cs, tipo: FUN => Pedidos - Eliminar
-
-idRecurso: 95, grupo: cs, tipo: VIS => Producto - Menu
-idRecurso: 96, grupo: cs, tipo: FUN => Producto - Listar
-idRecurso: 97, grupo: cs, tipo: FUN => Producto - Agregar
-idRecurso: 98, grupo: cs, tipo: FUN => Producto - Modificar
-idRecurso: 99, grupo: cs, tipo: FUN => Producto - Eliminar
-
-idRecurso: 95, grupo: cs, tipo: VIS => Proveedores - Menu
-idRecurso: 96, grupo: cs, tipo: FUN => Proveedores - Listar
-idRecurso: 97, grupo: cs, tipo: FUN => Proveedores - Agregar
-idRecurso: 98, grupo: cs, tipo: FUN => Proveedores - Modificar
-idRecurso: 99, grupo: cs, tipo: FUN => Proveedores - Eliminar
-
-idRecurso: 95, grupo: cs, tipo: VIS => Usuario - Menu
-idRecurso: 96, grupo: cs, tipo: FUN => Usuario - Listar
-idRecurso: 97, grupo: cs, tipo: FUN => Usuario - Agregar
-idRecurso: 98, grupo: cs, tipo: FUN => Usuario - Modificar
-idRecurso: 99, grupo: cs, tipo: FUN => Usuario - Eliminar
-
 idRecurso: 95, grupo: cs, tipo: VIS => Usuario - Menu
 idRecurso: 96, grupo: cs, tipo: FUN => Usuario - Listar
 idRecurso: 97, grupo: cs, tipo: FUN => Usuario - Agregar

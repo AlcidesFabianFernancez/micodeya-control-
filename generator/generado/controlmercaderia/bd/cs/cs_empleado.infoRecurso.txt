@@ -1,5 +1,0 @@
-idRecurso: 95, grupo: cs, tipo: VIS => Empleado - Menu
-idRecurso: 96, grupo: cs, tipo: FUN => Empleado - Listar
-idRecurso: 97, grupo: cs, tipo: FUN => Empleado - Agregar
-idRecurso: 98, grupo: cs, tipo: FUN => Empleado - Modificar
-idRecurso: 99, grupo: cs, tipo: FUN => Empleado - Eliminar

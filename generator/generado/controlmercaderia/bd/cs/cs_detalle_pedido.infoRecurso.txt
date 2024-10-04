@@ -1,5 +1,0 @@
-idRecurso: 95, grupo: cs, tipo: VIS => Detalle Pedido - Menu
-idRecurso: 96, grupo: cs, tipo: FUN => Detalle Pedido - Listar
-idRecurso: 97, grupo: cs, tipo: FUN => Detalle Pedido - Agregar
-idRecurso: 98, grupo: cs, tipo: FUN => Detalle Pedido - Modificar
-idRecurso: 99, grupo: cs, tipo: FUN => Detalle Pedido - Eliminar
