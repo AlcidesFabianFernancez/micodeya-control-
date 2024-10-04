@@ -54,4 +54,10 @@ idRecurso: 97, grupo: cs, tipo: FUN => Usuario - Agregar
 idRecurso: 98, grupo: cs, tipo: FUN => Usuario - Modificar
 idRecurso: 99, grupo: cs, tipo: FUN => Usuario - Eliminar
 
+idRecurso: 95, grupo: cs, tipo: VIS => Usuario - Menu
+idRecurso: 96, grupo: cs, tipo: FUN => Usuario - Listar
+idRecurso: 97, grupo: cs, tipo: FUN => Usuario - Agregar
+idRecurso: 98, grupo: cs, tipo: FUN => Usuario - Modificar
+idRecurso: 99, grupo: cs, tipo: FUN => Usuario - Eliminar
+
 
