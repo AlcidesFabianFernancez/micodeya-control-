@@ -32,6 +32,7 @@ import zzz.com.micodeya.backend.core.entities.AbstractModelZk;
 @Where(clause = "zk_eliminado=false")
 public class Cargo extends AbstractModelZk implements Serializable{
 
+	
 	private static final long serialVersionUID = 1L;
 
 	
