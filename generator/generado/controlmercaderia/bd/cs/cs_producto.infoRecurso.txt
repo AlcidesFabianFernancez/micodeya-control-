@@ -1,0 +1,5 @@
+idRecurso: 95, grupo: cs, tipo: VIS => Producto - Menu
+idRecurso: 96, grupo: cs, tipo: FUN => Producto - Listar
+idRecurso: 97, grupo: cs, tipo: FUN => Producto - Agregar
+idRecurso: 98, grupo: cs, tipo: FUN => Producto - Modificar
+idRecurso: 99, grupo: cs, tipo: FUN => Producto - Eliminar

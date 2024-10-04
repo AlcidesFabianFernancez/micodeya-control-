@@ -60,6 +60,37 @@ CREATE SEQUENCE CS_CATEGORIA_SEQ
 	increment 1 minvalue 1 maxvalue 9223372036854775807 start 100 cache 1;
 
 
+/* TABLE CS_DETALLE_PEDIDO */
+CREATE TABLE CS_DETALLE_PEDIDO
+(
+	id_detalle_pedido numeric(9,0) NOT NULL,
+	id_pedido numeric(9,0) NOT NULL,
+	id_producto numeric(9,0) NOT NULL,
+	cantidad_pedido numeric(9,0) NOT NULL,
+	precio_unitario numeric(9,0),
+
+	/*campos genericos auditoria*/
+	zk_usr_crea character varying(60) not null,
+	zk_usr_modi character varying(60),
+	zk_fec_crea timestamp without time zone not null,
+	zk_ult_modi timestamp without time zone not null,
+	zk_empresa_core character varying(30) not null,
+	zk_cuenta character varying(60) not null,
+	zk_eliminado boolean not null,
+	zk_fec_elim timestamp without time zone,
+	zk_uuid character varying(100) not null
+)
+WITH (
+  OIDS=FALSE
+);
+
+ALTER TABLE CS_DETALLE_PEDIDO 
+	ADD CONSTRAINT "CS_DETALLE_PEDIDO-id_detalle_pedido_pk" PRIMARY KEY (id_detalle_pedido);
+
+CREATE SEQUENCE CS_DETALLE_PEDIDO_SEQ
+	increment 1 minvalue 1 maxvalue 9223372036854775807 start 100 cache 1;
+
+
 /* TABLE CS_EMPLEADO */
 CREATE TABLE CS_EMPLEADO
 (
@@ -121,6 +152,40 @@ ALTER TABLE CS_PEDIDOS
 	ADD CONSTRAINT "CS_PEDIDOS-id_pedidos_pk" PRIMARY KEY (id_pedidos);
 
 CREATE SEQUENCE CS_PEDIDOS_SEQ
+	increment 1 minvalue 1 maxvalue 9223372036854775807 start 100 cache 1;
+
+
+/* TABLE CS_PRODUCTO */
+CREATE TABLE CS_PRODUCTO
+(
+	id_producto numeric(9,0) NOT NULL,
+	producto character varying(60) NOT NULL,
+	descripcion character varying(60),
+	precio_unitario numeric(9,0) NOT NULL,
+	stock_atual numeric(9,0),
+	stock_minimo numeric(9,0) NOT NULL,
+	activo boolean NOT NULL DEFAULT 'true',
+	id_categoria numeric(9,0) NOT NULL,
+
+	/*campos genericos auditoria*/
+	zk_usr_crea character varying(60) not null,
+	zk_usr_modi character varying(60),
+	zk_fec_crea timestamp without time zone not null,
+	zk_ult_modi timestamp without time zone not null,
+	zk_empresa_core character varying(30) not null,
+	zk_cuenta character varying(60) not null,
+	zk_eliminado boolean not null,
+	zk_fec_elim timestamp without time zone,
+	zk_uuid character varying(100) not null
+)
+WITH (
+  OIDS=FALSE
+);
+
+ALTER TABLE CS_PRODUCTO 
+	ADD CONSTRAINT "CS_PRODUCTO-id_producto_pk" PRIMARY KEY (id_producto);
+
+CREATE SEQUENCE CS_PRODUCTO_SEQ
 	increment 1 minvalue 1 maxvalue 9223372036854775807 start 100 cache 1;
 
 
@@ -221,6 +286,27 @@ CREATE SEQUENCE CS_UTILIZADOR_SEQ
 	increment 1 minvalue 1 maxvalue 9223372036854775807 start 100 cache 1;
 
 
+/* CONSTRAINT CS_DETALLE_PEDIDO */
+ALTER TABLE CS_DETALLE_PEDIDO 
+	ADD CONSTRAINT "CS_DETALLE_PEDIDO-id_pedido_fk"  FOREIGN KEY (id_pedido)
+	REFERENCES cs_pedidos (id_pedidos) ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+ALTER TABLE CS_DETALLE_PEDIDO 
+	ADD CONSTRAINT "CS_DETALLE_PEDIDO-id_producto_fk"  FOREIGN KEY (id_producto)
+	REFERENCES cs_producto (id_producto) ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ALTER TABLE CS_EMPLEADO 
 	ADD CONSTRAINT "CS_EMPLEADO-numero_documento_uq" UNIQUE (numero_documento);
@@ -244,6 +330,29 @@ ALTER TABLE CS_EMPLEADO
 ALTER TABLE CS_PEDIDOS 
 	ADD CONSTRAINT "CS_PEDIDOS-id_proveedor_fk"  FOREIGN KEY (id_proveedor)
 	REFERENCES cs_proveedores (id_proveedores) ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* CONSTRAINT CS_PRODUCTO */
+ALTER TABLE CS_PRODUCTO 
+	ADD CONSTRAINT "CS_PRODUCTO-id_categoria_fk"  FOREIGN KEY (id_categoria)
+	REFERENCES cs_categoria (id_categoria) ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+
+
+
+
+
 
 
 

@@ -12,6 +12,12 @@ idRecurso: 97, grupo: cs, tipo: FUN => Categoria - Agregar
 idRecurso: 98, grupo: cs, tipo: FUN => Categoria - Modificar
 idRecurso: 99, grupo: cs, tipo: FUN => Categoria - Eliminar
 
+idRecurso: 95, grupo: cs, tipo: VIS => Detalle Pedido - Menu
+idRecurso: 96, grupo: cs, tipo: FUN => Detalle Pedido - Listar
+idRecurso: 97, grupo: cs, tipo: FUN => Detalle Pedido - Agregar
+idRecurso: 98, grupo: cs, tipo: FUN => Detalle Pedido - Modificar
+idRecurso: 99, grupo: cs, tipo: FUN => Detalle Pedido - Eliminar
+
 idRecurso: 95, grupo: cs, tipo: VIS => Empleado - Menu
 idRecurso: 96, grupo: cs, tipo: FUN => Empleado - Listar
 idRecurso: 97, grupo: cs, tipo: FUN => Empleado - Agregar
@@ -23,6 +29,12 @@ idRecurso: 96, grupo: cs, tipo: FUN => Pedidos - Listar
 idRecurso: 97, grupo: cs, tipo: FUN => Pedidos - Agregar
 idRecurso: 98, grupo: cs, tipo: FUN => Pedidos - Modificar
 idRecurso: 99, grupo: cs, tipo: FUN => Pedidos - Eliminar
+
+idRecurso: 95, grupo: cs, tipo: VIS => Producto - Menu
+idRecurso: 96, grupo: cs, tipo: FUN => Producto - Listar
+idRecurso: 97, grupo: cs, tipo: FUN => Producto - Agregar
+idRecurso: 98, grupo: cs, tipo: FUN => Producto - Modificar
+idRecurso: 99, grupo: cs, tipo: FUN => Producto - Eliminar
 
 idRecurso: 95, grupo: cs, tipo: VIS => Proveedores - Menu
 idRecurso: 96, grupo: cs, tipo: FUN => Proveedores - Listar
