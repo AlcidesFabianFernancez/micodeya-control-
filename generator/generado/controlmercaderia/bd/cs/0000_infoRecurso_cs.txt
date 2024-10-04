@@ -6,6 +6,12 @@ idRecurso: 97, grupo: cs, tipo: FUN => Cargo - Agregar
 idRecurso: 98, grupo: cs, tipo: FUN => Cargo - Modificar
 idRecurso: 99, grupo: cs, tipo: FUN => Cargo - Eliminar
 
+idRecurso: 95, grupo: cs, tipo: VIS => Categoria - Menu
+idRecurso: 96, grupo: cs, tipo: FUN => Categoria - Listar
+idRecurso: 97, grupo: cs, tipo: FUN => Categoria - Agregar
+idRecurso: 98, grupo: cs, tipo: FUN => Categoria - Modificar
+idRecurso: 99, grupo: cs, tipo: FUN => Categoria - Eliminar
+
 idRecurso: 95, grupo: cs, tipo: VIS => Usuario - Menu
 idRecurso: 96, grupo: cs, tipo: FUN => Usuario - Listar
 idRecurso: 97, grupo: cs, tipo: FUN => Usuario - Agregar
