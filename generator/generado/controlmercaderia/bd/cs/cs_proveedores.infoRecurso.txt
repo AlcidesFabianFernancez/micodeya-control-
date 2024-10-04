@@ -1,0 +1,5 @@
+idRecurso: 95, grupo: cs, tipo: VIS => Proveedores - Menu
+idRecurso: 96, grupo: cs, tipo: FUN => Proveedores - Listar
+idRecurso: 97, grupo: cs, tipo: FUN => Proveedores - Agregar
+idRecurso: 98, grupo: cs, tipo: FUN => Proveedores - Modificar
+idRecurso: 99, grupo: cs, tipo: FUN => Proveedores - Eliminar
