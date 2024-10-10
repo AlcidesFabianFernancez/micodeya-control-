@@ -16,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 import zzz.com.micodeya.backend.core.dao.zk.LoginLogDao;
 import zzz.com.micodeya.backend.core.dao.zk.UsuarioDao;
 import zzz.com.micodeya.backend.core.entities.zk.LoginLog;
+import zzz.com.micodeya.backend.core.service.JeSecurityService;
 import zzz.com.micodeya.backend.core.util.JeBoot;
 import zzz.com.micodeya.backend.core.util.JeResponse;
 import zzz.com.micodeya.backend.core.util.security.InfoAuditoria;
@@ -24,13 +25,11 @@ import zzz.com.micodeya.backend.core.util.security.JwtGeneratorInterface;
 import zzz.com.micodeya.backend.core.util.security.SesionJwt;
 import zzz.com.micodeya.backend.core.util.security.UsuarioSesionInterno;
 
-
-
-
 @Slf4j
 @RestController
-@RequestMapping("/api/auth")
 public class AuthJwtRest {
+
+	private final String BASE_API = "/api/auth";
 
 	@Autowired
 	private UsuarioDao usuarioDao;
@@ -40,37 +39,39 @@ public class AuthJwtRest {
 	@Autowired
 	private JwtGeneratorInterface jwtGenerator;
 
-	@PostMapping("/dummy")
-    public Map<String, Object> dummy(
-            HttpServletRequest request,
-            @RequestBody InicioSesionDto datosInicioSesion) {
- 
-        JeResponse jeResponse = new JeResponse("Acceso correcto", "Error grave al acceder");
- 
-        try {
- 
-            if (jeResponse.sinErrorValidacion()) {
- 
-                
-                UsuarioSesionInterno usuarioSesion = obtenerUsuarioAcaNomas(request, datosInicioSesion);
-                usuarioSesion.setIat(new Date().getTime());
- 
-                jeResponse.putResultado("token", jwtGenerator.generateToken(usuarioSesion.getUsuarioJwt()));
-                jeResponse.putResultado("user", usuarioSesion.getUsuarioSesionExterno());
- 
-            }
- 
-            /* AUTOGENERADO _KGC_ */
-            jeResponse.prepararRetornoMap();
-        } catch (Exception e) {
-            jeResponse.prepararRetornoErrorMap(e);
-            log.error(jeResponse.getErrorForLog(), e);
-        }
- 
-        return jeResponse.getRetornoMap();
-    }
+	@Autowired
+	JeSecurityService securityService;
 
-	@PostMapping("/login")
+	@PostMapping(BASE_API + "/dummy")
+	public Map<String, Object> dummy(
+			HttpServletRequest request,
+			@RequestBody InicioSesionDto datosInicioSesion) {
+
+		JeResponse jeResponse = new JeResponse("Acceso correcto", "Error grave al acceder");
+
+		try {
+
+			if (jeResponse.sinErrorValidacion()) {
+
+				UsuarioSesionInterno usuarioSesion = obtenerUsuarioAcaNomas(request, datosInicioSesion);
+				usuarioSesion.setIat(new Date().getTime());
+
+				jeResponse.putResultado("token", jwtGenerator.generateToken(usuarioSesion.getUsuarioJwt()));
+				jeResponse.putResultado("user", usuarioSesion.getUsuarioSesionExterno());
+
+			}
+
+			/* AUTOGENERADO _KGC_ */
+			jeResponse.prepararRetornoMap();
+		} catch (Exception e) {
+			jeResponse.prepararRetornoErrorMap(e);
+			log.error(jeResponse.getErrorForLog(), e);
+		}
+
+		return jeResponse.getRetornoMap();
+	}
+
+	@PostMapping(BASE_API + "/login")
 	public Map<String, Object> login(
 			HttpServletRequest request,
 			@RequestBody InicioSesionDto datosInicioSesion) {
@@ -81,13 +82,13 @@ public class AuthJwtRest {
 		try {
 
 			if (jeResponse.sinErrorValidacion()) {
-				//(property) OS: "ios" | "android" | "windows" | "macos" | "web"
-				//RENEWIOS RENEWDROID
+				// (property) OS: "ios" | "android" | "windows" | "macos" | "web"
+				// RENEWIOS RENEWDROID
 				String sistemaOperativoMovil = request.getHeader("xrn-so") == null ? "WEB"
-				: request.getHeader("xrn-so").toString();
+						: request.getHeader("xrn-so").toString();
 
 				sistemaOperativoMovil = sistemaOperativoMovil.equalsIgnoreCase("android") ? "APPDROID"
-					: sistemaOperativoMovil.equalsIgnoreCase("ios") ? "APPIOS" : "WEB";
+						: sistemaOperativoMovil.equalsIgnoreCase("ios") ? "APPIOS" : "WEB";
 
 				loginLog = new LoginLog();
 
@@ -98,7 +99,7 @@ public class AuthJwtRest {
 				loginLog.setIp(request.getRemoteAddr());
 				loginLog.setMotivo(null);
 				loginLog.setActivo(true);
-				
+
 				InfoAuditoria infoAuditoria = new InfoAuditoria(true);
 				loginLogDao.agregar(infoAuditoria, loginLog);
 
@@ -110,10 +111,9 @@ public class AuthJwtRest {
 				jeResponse.putResultado("token", jwtGenerator.generateToken(usuarioSesion.getUsuarioJwt()));
 				jeResponse.putResultado("user", usuarioSesion.getUsuarioSesionExterno());
 
-				//Actualiar loginLog;
+				// Actualiar loginLog;
 				loginLog.setExitoso(true);
 				loginLogDao.modificar(infoAuditoria, loginLog);
-
 
 			}
 
@@ -129,15 +129,14 @@ public class AuthJwtRest {
 				loginLog.setMotivo(jeResponse.getErrorValList().toString());
 				loginLogDao.modificar(infoAuditoria, loginLog);
 			} catch (Exception e2) {
-				log.error("ERROR AL ACTUALIZAR LOGIN LOG",e2);
+				log.error("ERROR AL ACTUALIZAR LOGIN LOG", e2);
 			}
 		}
 
 		return jeResponse.getRetornoMap();
 	}
 
-
-	@PostMapping("/logout")
+	@PostMapping(BASE_API + "/logout")
 	public Map<String, Object> logout(
 			HttpServletRequest request) {
 
@@ -152,13 +151,13 @@ public class AuthJwtRest {
 
 			if (jeResponse.sinErrorValidacion()) {
 
-				//(property) OS: "ios" | "android" | "windows" | "macos" | "web"
-				//RENEWIOS RENEWDROID
+				// (property) OS: "ios" | "android" | "windows" | "macos" | "web"
+				// RENEWIOS RENEWDROID
 				String sistemaOperativoMovil = request.getHeader("xrn-so") == null ? "WEB"
-				: request.getHeader("xrn-so").toString();
+						: request.getHeader("xrn-so").toString();
 
 				sistemaOperativoMovil = sistemaOperativoMovil.equalsIgnoreCase("android") ? "LOGOUTDROI"
-					: sistemaOperativoMovil.equalsIgnoreCase("ios") ? "LOGOUTIOS" : "LOGOUTWEB";
+						: sistemaOperativoMovil.equalsIgnoreCase("ios") ? "LOGOUTIOS" : "LOGOUTWEB";
 
 				loginLog = new LoginLog();
 
@@ -169,19 +168,20 @@ public class AuthJwtRest {
 				loginLog.setIp(request.getRemoteAddr());
 				loginLog.setMotivo(null);
 				loginLog.setActivo(true);
-				
+
 				InfoAuditoria infoAuditoria = new InfoAuditoria(true);
 				loginLogDao.agregar(infoAuditoria, loginLog);
 
-
-				// UsuarioSesionInterno usuarioSesion = usuarioDao.obtenerUsuarioSesionPorUsuario(request,
-				// 		userSession.getUsuario(), userSession.getEmpresaCore());
+				// UsuarioSesionInterno usuarioSesion =
+				// usuarioDao.obtenerUsuarioSesionPorUsuario(request,
+				// userSession.getUsuario(), userSession.getEmpresaCore());
 				// usuarioSesion.setIat(new Date().getTime());
 
-				// jeResponse.putResultado("token", jwtGenerator.generateToken(usuarioSesion.getUsuarioJwt()));
+				// jeResponse.putResultado("token",
+				// jwtGenerator.generateToken(usuarioSesion.getUsuarioJwt()));
 				// jeResponse.putResultado("user", usuarioSesion.getUsuarioSesionExterno());
 
-				//Actualiar loginLog;
+				// Actualiar loginLog;
 				// loginLog.setExitoso(true);
 				// loginLogDao.modificar(infoAuditoria, loginLog);
 
@@ -198,16 +198,14 @@ public class AuthJwtRest {
 				loginLog.setMotivo(jeResponse.getErrorValList().toString());
 				loginLogDao.modificar(infoAuditoria, loginLog);
 			} catch (Exception e2) {
-				log.error("ERROR AL ACTUALIZAR LOGIN LOG RENEW",e2);
+				log.error("ERROR AL ACTUALIZAR LOGIN LOG RENEW", e2);
 			}
 		}
 
 		return jeResponse.getRetornoMap();
 	}
 
-	
-
-	@PostMapping("/renew")
+	@PostMapping(BASE_API + "/renew")
 	public Map<String, Object> renew(
 			HttpServletRequest request) {
 
@@ -222,13 +220,13 @@ public class AuthJwtRest {
 
 			if (jeResponse.sinErrorValidacion()) {
 
-								//(property) OS: "ios" | "android" | "windows" | "macos" | "web"
-				//RENEWIOS RENEWDROID
+				// (property) OS: "ios" | "android" | "windows" | "macos" | "web"
+				// RENEWIOS RENEWDROID
 				String sistemaOperativoMovil = request.getHeader("xrn-so") == null ? "WEB"
-				: request.getHeader("xrn-so").toString();
+						: request.getHeader("xrn-so").toString();
 
 				sistemaOperativoMovil = sistemaOperativoMovil.equalsIgnoreCase("android") ? "RENEWDROID"
-					: sistemaOperativoMovil.equalsIgnoreCase("ios") ? "RENEWIOS" : "RENEWWEB";
+						: sistemaOperativoMovil.equalsIgnoreCase("ios") ? "RENEWIOS" : "RENEWWEB";
 
 				loginLog = new LoginLog();
 
@@ -239,10 +237,9 @@ public class AuthJwtRest {
 				loginLog.setIp(request.getRemoteAddr());
 				loginLog.setMotivo(null);
 				loginLog.setActivo(true);
-				
+
 				InfoAuditoria infoAuditoria = new InfoAuditoria(true);
 				loginLogDao.agregar(infoAuditoria, loginLog);
-
 
 				UsuarioSesionInterno usuarioSesion = usuarioDao.obtenerUsuarioSesionPorUsuario(request,
 						userSession.getUsuario(), userSession.getEmpresaCore());
@@ -251,7 +248,7 @@ public class AuthJwtRest {
 				jeResponse.putResultado("token", jwtGenerator.generateToken(usuarioSesion.getUsuarioJwt()));
 				jeResponse.putResultado("user", usuarioSesion.getUsuarioSesionExterno());
 
-				//Actualiar loginLog;
+				// Actualiar loginLog;
 				loginLog.setExitoso(true);
 				loginLogDao.modificar(infoAuditoria, loginLog);
 
@@ -268,14 +265,59 @@ public class AuthJwtRest {
 				loginLog.setMotivo(jeResponse.getErrorValList().toString());
 				loginLogDao.modificar(infoAuditoria, loginLog);
 			} catch (Exception e2) {
-				log.error("ERROR AL ACTUALIZAR LOGIN LOG RENEW",e2);
+				log.error("ERROR AL ACTUALIZAR LOGIN LOG RENEW", e2);
 			}
 		}
 
 		return jeResponse.getRetornoMap();
 	}
 
-	@PostMapping("/verificarPermiso")
+	@PostMapping("/api/public/encriptarPassword")
+	public Map<String, Object> encriptarPassword(
+			HttpServletRequest request,
+			@RequestBody EncriptarPasswordDto encriptarPasswordDto) {
+
+		Integer[] idRecursoPermisoArray = { 9 };
+		JeResponse jeResponse = new JeResponse("Contraseña modificada correctamente",
+				"Error grave al modificar Contraseña");
+		UsuarioSesionInterno userSession = null;
+
+		try {
+
+			// userSession = SesionJwt.getUserSesion(request, idRecursoPermisoArray);
+
+			/** TRANSFORMACION BASICA */
+
+			/** VERIFICACION BASICA */
+
+			/** OTRAS VERIFICACIONES */
+
+			String newPassword = null;
+
+			if (jeResponse.sinErrorValidacion()) {
+				securityService.verificarPassword(encriptarPasswordDto.getPassword());
+
+				newPassword = securityService.encriptar(encriptarPasswordDto.getPassword(),
+						encriptarPasswordDto.getUser());
+			}
+
+			if (jeResponse.sinErrorValidacion()) {
+
+				jeResponse.putResultado("pass", newPassword);
+			}
+
+			/* AUTOGENERADO _KGC_ */
+			jeResponse.prepararRetornoMap();
+		} catch (Exception e) {
+			jeResponse.prepararRetornoErrorMap(e);
+			if (!jeResponse.isWarning())
+				log.error(jeResponse.getErrorForLog(), e);
+		}
+
+		return jeResponse.getRetornoMap();
+	}
+
+	@PostMapping(BASE_API + "/verificarPermiso")
 	public Map<String, Object> verificarPermiso(
 			HttpServletRequest request,
 			@RequestBody VerificarRecursoDto verificarRecursoDto) {
@@ -316,29 +358,33 @@ public class AuthJwtRest {
 		return jeResponse.getRetornoMap();
 	}
 
-
-
 	private UsuarioSesionInterno obtenerUsuarioAcaNomas(HttpServletRequest request,
-            InicioSesionDto datosInicioSesion) {
- 
-        UsuarioSesionInterno usuarioSesion = new UsuarioSesionInterno();
-        usuarioSesion.setEmpresaCore("EMPKUAA");
-        usuarioSesion.setIdSesion(5);
-        // usuarioSesion.setIdCuenta(1);
-        usuarioSesion.setCuenta(datosInicioSesion.getUser().toLowerCase());
-        usuarioSesion.setIdUsuario(1);
-        usuarioSesion.setUsuario(datosInicioSesion.getUser().toLowerCase());
-        usuarioSesion.setNombre(JeBoot.getPrimeroMayuscula(datosInicioSesion.getUser()));
-        usuarioSesion.setApellido(datosInicioSesion.getUser().toUpperCase());
-        usuarioSesion.setIdRecursoConcat("," + 0 + ",");
-        usuarioSesion.setIdRecursoConcatBase16("," + 0 + ",");
-        usuarioSesion.setTimeOutSesion(300);
-        return usuarioSesion;
-    }
+			InicioSesionDto datosInicioSesion) {
+
+		UsuarioSesionInterno usuarioSesion = new UsuarioSesionInterno();
+		usuarioSesion.setEmpresaCore("EMPKUAA");
+		usuarioSesion.setIdSesion(5);
+		// usuarioSesion.setIdCuenta(1);
+		usuarioSesion.setCuenta(datosInicioSesion.getUser().toLowerCase());
+		usuarioSesion.setIdUsuario(1);
+		usuarioSesion.setUsuario(datosInicioSesion.getUser().toLowerCase());
+		usuarioSesion.setNombre(JeBoot.getPrimeroMayuscula(datosInicioSesion.getUser()));
+		usuarioSesion.setApellido(datosInicioSesion.getUser().toUpperCase());
+		usuarioSesion.setIdRecursoConcat("," + 0 + ",");
+		usuarioSesion.setIdRecursoConcatBase16("," + 0 + ",");
+		usuarioSesion.setTimeOutSesion(300);
+		return usuarioSesion;
+	}
 
 }
 
 @Data
 class VerificarRecursoDto {
 	private Integer idRecurso;
+}
+
+@Data
+class EncriptarPasswordDto {
+	private String user;
+	private String password;
 }

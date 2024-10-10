@@ -9,6 +9,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
+import java.text.Normalizer;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -724,11 +725,32 @@ public class JeBoot {
         }
     }
 
-	public static String normalizarAlias(String alias) {
+	public static String normalizarUsuario(String usuario) {
 
-		alias = alias.toLowerCase();
-		alias = alias.replace(" ", "-");
-		return alias.trim();
+		System.out.println("usuario original: "+usuario);
+		usuario = usuario.toLowerCase();
+		System.out.println("usuario minuscula: "+usuario);
+		usuario = usuario.replace(" ", "-");
+		System.out.println("usuario sin espacio: "+usuario);
+		usuario = usuario.trim();
+
+		// Paso 1: Reemplaza cualquier letra con acento por su versión sin acento
+        String normalizedString = Normalizer.normalize(usuario, Normalizer.Form.NFD);
+		System.out.println("usuario normalizedString: "+usuario);
+		// sin acentos
+        usuario = normalizedString.replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+		System.out.println("usuario sin acento: "+usuario);
+
+		usuario = usuario.replace('ñ', 'n').replace('Ñ', 'N');
+		System.out.println("usuario sin ñ: "+usuario);
+
+		// Reemplaza cualquier carácter que no sea alfanumérico (a-zA-Z0-9) por '-'
+        usuario = usuario.replaceAll("[^a-zA-Z0-9]", "-");
+		System.out.println("usuario sin especial: "+usuario);
+
+		System.out.println("usuario final: "+usuario);
+
+		return usuario.trim();
 
 	}
 
@@ -805,6 +827,15 @@ public class JeBoot {
         Date nuevaFecha = new Date(tiempoNuevaFecha);
         return nuevaFecha;
     }
+
+	public static String truncateText(String text, int maxLength) {
+        if (text.length() > maxLength) {
+            return text.substring(0, maxLength);
+        } else {
+            return text;
+        }
+    }
+
 
 	
 }

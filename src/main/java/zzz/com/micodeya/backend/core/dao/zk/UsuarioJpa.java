@@ -1,12 +1,12 @@
 package zzz.com.micodeya.backend.core.dao.zk;
 
-import zzz.com.micodeya.backend.core.entities.zk.Usuario;
-
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
+import zzz.com.micodeya.backend.core.entities.zk.Usuario;
 
 public interface UsuarioJpa extends JpaRepository<Usuario, Integer>{
 
@@ -18,14 +18,15 @@ public interface UsuarioJpa extends JpaRepository<Usuario, Integer>{
     long countByUsuarioIgnoreCase(String usuario);
 	long countByIdUsuarioNotAndUsuarioIgnoreCase(Integer idUsuario, String usuario);
 
-    long countByCuentaIgnoreCase(String usuario);
+		long countByCuentaIgnoreCase(String cuenta);
 	long countByIdUsuarioNotAndCuentaIgnoreCase(Integer idUsuario, String cuenta);
+
+
+    // KGC-NOREPLACE-OTROS-INI
 
     long countByCorreoPrincipalIgnoreCase(String correoPrincipal);
 	long countByIdUsuarioNotAndCorreoPrincipalIgnoreCase(Integer idUsuario, String correoPrincipal);
-
-    // KGC-AUTO-OTROS: lo que está debajo no se reemplazará al regenerar
-
+ 
     @Query("SELECT DISTINCT rr.recurso.idRecurso "
     + " FROM RolRecurso rr "
     + " WHERE rr.rol IN (select ur.rol from UsuarioRol ur where ur.usuario = :usuario) ")
@@ -48,5 +49,6 @@ public interface UsuarioJpa extends JpaRepository<Usuario, Integer>{
         + " WHERE rr.rol IN (select ur.rol from UsuarioRol ur where ur.usuario = :usuario AND ur.codigoEmpresaCore = :codigoEmpresaCore) ")
     List<String> getRecursosPermitidosEmpresaCoreBase16(@Param("usuario") Usuario usuario, @Param("codigoEmpresaCore") String empresaCore);
 
+    // KGC-NOREPLACE-OTROS-FIN
 
 }

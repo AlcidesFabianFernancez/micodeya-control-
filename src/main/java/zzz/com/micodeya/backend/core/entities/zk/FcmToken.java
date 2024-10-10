@@ -66,6 +66,9 @@ public class FcmToken extends AbstractModelZk implements Serializable{
 
 	@NotNull(message = "Activo: no debe ser nulo")
 	private Boolean activo;
+	
+	// @NotNull(message = "Activo: no debe ser nulo")
+	private Boolean sinPermisoAndroid;
 
 
 	public FcmToken(Integer id) {

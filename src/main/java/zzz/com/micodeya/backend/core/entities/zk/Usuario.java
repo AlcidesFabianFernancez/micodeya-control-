@@ -119,6 +119,9 @@ public class Usuario extends AbstractModelZk implements Serializable{
 	@Formula("TO_CHAR(fecha_hora_suspension, 'dd/MM/yyyy HH24:MI:SS')")
 	private String fechaHoraSuspensionMask;
 
+	//Cuando el usuario se registra solo con un nombre o alias
+	private Boolean anonimo;
+
 
 	public Usuario(Integer id) {
 		this.idUsuario = id;

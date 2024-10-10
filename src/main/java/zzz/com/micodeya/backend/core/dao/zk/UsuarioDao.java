@@ -3,13 +3,11 @@ package zzz.com.micodeya.backend.core.dao.zk;
 import java.util.List;
 
 import jakarta.servlet.http.HttpServletRequest;
-
 import zzz.com.micodeya.backend.core.dao.GenericDAOInterface;
 import zzz.com.micodeya.backend.core.entities.zk.Usuario;
 import zzz.com.micodeya.backend.core.util.security.InfoAuditoria;
 import zzz.com.micodeya.backend.core.util.security.InicioSesionDto;
 import zzz.com.micodeya.backend.core.util.security.UsuarioSesionInterno;
-
 
 public interface UsuarioDao extends GenericDAOInterface<Usuario, Integer>{
 
@@ -21,9 +19,9 @@ public interface UsuarioDao extends GenericDAOInterface<Usuario, Integer>{
     //transaccion
     public Usuario agregar(InfoAuditoria infoAuditoria, Usuario usuario);
     public Usuario modificar(InfoAuditoria infoAuditoria, Usuario usuario);
-    public void eliminarPorId(InfoAuditoria infoAuditoria, Integer idUsuario);
+    public Usuario eliminarPorId(InfoAuditoria infoAuditoria, Integer idUsuario);
 
-   // KGC-AUTO-OTROS: lo que está debajo no se reemplazará al regenerar
+    // KGC-NOREPLACE-OTROS-INI
    public UsuarioSesionInterno obtenerUsuarioSesion(HttpServletRequest request, InicioSesionDto datosInicioSesion); 
    public UsuarioSesionInterno obtenerUsuarioSesionPorUsuario(HttpServletRequest request, String nombreUsuario, String empresaCore); 
 
@@ -35,5 +33,6 @@ public interface UsuarioDao extends GenericDAOInterface<Usuario, Integer>{
    public Usuario recuperarPassword(InfoAuditoria infoAuditoria, Integer idUsuario, String passwordNuevo);
    public Usuario suspenderCuenta(InfoAuditoria infoAuditoria, Integer idUsuario,String passwordActual);
 
-
+   // KGC-NOREPLACE-OTROS-FIN
+    
 } 

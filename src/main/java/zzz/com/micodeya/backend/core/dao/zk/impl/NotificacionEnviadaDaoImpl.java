@@ -95,6 +95,12 @@ public class NotificacionEnviadaDaoImpl extends GenericDAO<NotificacionEnviada, 
 
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public long pendienteVisto(InfoAuditoria infoAuditoria){
+        return jpa.countByCuentaAndVisto(infoAuditoria.getCuenta(), false);
+    }
+
     // KGC-NOREPLACE-OTROS-FIN					
 
     @Override
@@ -171,7 +177,12 @@ public class NotificacionEnviadaDaoImpl extends GenericDAO<NotificacionEnviada, 
                 // enviar notificacion
                 SendOneFcmDto pushMsg = new SendOneFcmDto(
                         fcmToken, notificacionEnviada.getTitulo(), notificacionEnviada.getContenido());
+                        
+                if (notificacionEnviada.getCargaUtilMap() != null) {
+                    pushMsg.setCargaUtil(notificacionEnviada.getCargaUtilMap());
+                }
                 firebaseMessagingService.sendOneNotification(pushMsg);
+
                 log.info("Push enviado");
 
             } catch (FirebaseMessagingException e) {

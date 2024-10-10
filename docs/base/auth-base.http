@@ -1,0 +1,104 @@
+## Entorno de .vscode/settings.json
+## Seleccionar entorno con  CTRL+ALT+E o CMD+OPTION+E
+@SOY_VARIABLE=Soy el contenido
+
+## Probar server
+curl --location --request GET '{{controlmercaderia_api}}/server/status' \
+--header 'xrn-so: web' --header 'xrn-version: 1.0.0' \
+
+
+### LOGIN
+curl --location --request POST '{{controlmercaderia_api}}/api/auth/login' \
+--header 'xrn-so: web' --header 'xrn-version: 1.0.0' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "user": "admin",
+    "password": "admin"
+}'
+
+
+### Verificar idRecurso
+curl --location --request POST '{{controlmercaderia_api}}/api/auth/verificarPermiso' \
+--header 'Authorization: Bearer {{controlmercaderia_token}}' \
+--header 'xrn-so: web' --header 'xrn-version: 1.0.0' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "idRecurso": 9
+}'
+
+
+### Encriptar password para que se pueda setearlo por BD
+### Generalemte cuando se cambia el secret del JWT
+curl --location --request POST '{{controlmercaderia_api}}/api/public/encriptarPassword' \
+--header 'xrn-so: web' --header 'xrn-version: 1.0.0' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "user": "visitante",
+	"password":"visitante"
+}'
+
+### verificar existencia de usuario
+curl --location --request POST '{{controlmercaderia_api}}/api/public/registro/verificarExistenciaUsuario' \
+--header 'xrn-so: web' --header 'xrn-version: 1.0.0' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "user": "admin"
+}'
+
+### Usuario listar
+curl --location --request POST '{{controlmercaderia_api}}/api/zk/usuario/listar' \
+# curl --location --request POST '{{controlmercaderia_api}}/api/zk/usuario/listar/c/cuentaCore' \
+--header 'Authorization: Bearer {{controlmercaderia_token}}' \
+--header 'xrn-so: web' --header 'xrn-version: 1.0.0' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "all": false,
+    "page": 1,
+    "limit": 10,
+    "orderBy": "nombre asc",
+    "filterList":[],
+    "atributos":"",
+    "detalles":[],
+    "extra":""
+}'
+###"filterList":  [{"data":"idUsuario", "op":"eq", "value":100, "group":"and"}]
+
+
+### Usuario Agregar directo
+curl --location --request POST '{{controlmercaderia_api}}/api/zk/usuarioCuenta/agregarDirecto' \
+--header 'Authorization: Bearer {{controlmercaderia_token}}' \
+--header 'xrn-so: web' --header 'xrn-version: 1.0.0' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"usuario": "juan",
+	"alias": "Juan Pe",
+	"nombre": "Juan",
+	"apellido": "Pérez",
+	"contrasenha": "12345678"
+}'
+
+
+### Usuario Agregar anonimo
+curl --location --request POST '{{controlmercaderia_api}}/api/public/registro/anonimo' \
+--header 'Authorization: Bearer {{controlmercaderia_token}}' \
+--header 'xrn-so: web' --header 'xrn-version: 1.0.0' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"usuario": "Papacho 05",
+	"contrasenha": "123456"
+}'
+
+
+### Ver perfil de usuario
+curl --location --request POST '{{controlmercaderia_api}}/api/zk/usuarioCuenta/infoPerfil/jose' \
+--header 'Authorization: Bearer {{controlmercaderia_token}}' \
+--header 'xrn-so: web' --header 'xrn-version: 1.0.0' \
+--header 'Content-Type: application/json' 
+
+### Ver mis avatar del usuario
+curl --location --request GET '{{controlmercaderia_api}}/api/zk/usuarioCuenta/img/admin.png' \
+--header 'Authorization: Bearer {{controlmercaderia_token}}' \
+--header 'xrn-so: web' --header 'xrn-version: 1.0.0'
+
+
+

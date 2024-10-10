@@ -20,6 +20,7 @@ public interface NotificacionEnviadaDao extends GenericDAOInterface<Notificacion
 
     // KGC-NOREPLACE-OTROS-INI
     public NotificacionEnviada marcarComoVisto(InfoAuditoria infoAuditoria, Integer idNotificacionEnviada);
+    public long pendienteVisto(InfoAuditoria infoAuditoria);
     // KGC-NOREPLACE-OTROS-FIN
     
 } 

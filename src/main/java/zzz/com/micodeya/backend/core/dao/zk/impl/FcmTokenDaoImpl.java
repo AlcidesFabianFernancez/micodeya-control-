@@ -137,6 +137,8 @@ public class FcmTokenDaoImpl extends GenericDAO<FcmToken, Integer> implements Fc
         setearDatosDefault(infoAuditoria, fcmToken);
 
         //buscar ultimo registro de ese token
+        Boolean sinPermisoBoolean=fcmToken.getSinPermisoAndroid();
+        
         List<FcmToken> resultList = jpa.findTop1ByFcmTokenAndActivoOrderByUltimaActualizacionDesc(fcmToken.getFcmToken(), true);
         //si existe 
         if(resultList.size()==1){
@@ -145,6 +147,7 @@ public class FcmTokenDaoImpl extends GenericDAO<FcmToken, Integer> implements Fc
             if(fcmTokenExistente.getCuenta().equals(infoAuditoria.getCuenta())){
                 fcmToken = fcmTokenExistente;
                 fcmToken.setUltimaActualizacion(new Date());
+                fcmToken.setSinPermisoAndroid(sinPermisoBoolean);
             }else{
                 // es otro, se debe desactivar
                 fcmTokenExistente.setActivo(false);

@@ -2,12 +2,13 @@ package zzz.com.micodeya.backend.core.entities.zk;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Map;
 
 import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import jakarta.persistence.Column;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -118,6 +119,10 @@ public class NotificacionEnviada extends AbstractModelZk implements Serializable
 			+" FROM zk_usuario "
 			+" WHERE zk_usuario.cuenta=zk_cuenta)")
     private String aliasCreadoPor;
+
+	
+	@Transient
+	private Map<String, String> cargaUtilMap;
 
 	
     // KGC-NOREPLACE-OTROS-FIN

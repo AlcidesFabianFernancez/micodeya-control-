@@ -74,7 +74,6 @@ public class KuaaJwtFilter extends GenericFilterBean {
                     || requestUri.startsWith(servletContextPath + "/static/")
                     || requestUri.endsWith("auth/login")
                     || requestUri.endsWith("server/status")
-                    || requestUri.contains("/gen/generatorCloud/")
                     || requestUri.contains("/api/public/")
 
             ) {

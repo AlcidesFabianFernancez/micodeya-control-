@@ -14,6 +14,8 @@ public interface NotificacionEnviadaJpa extends JpaRepository<NotificacionEnviad
     
 
     // KGC-NOREPLACE-OTROS-INI
+
+    long countByCuentaAndVisto(String cuenta, Boolean visto);
     // KGC-NOREPLACE-OTROS-FIN
 
 }

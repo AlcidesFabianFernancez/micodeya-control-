@@ -3,19 +3,19 @@
     "rest-client.environmentVariables": {
         "localhost": {
             "controlmercaderia_api": "http://localhost:8080/controlmercaderia",
-            "controlmercaderia_token": "Gernerar con api/auth/login"
+            "controlmercaderia_token": "Generar con api/auth/login"
         },
         "snap": {
             "controlmercaderia_api": "http://localhost:8080/controlmercaderia",
-            "controlmercaderia_token": "Gernerar con api/auth/login"
+            "controlmercaderia_token": "Generar con api/auth/login"
         },
         "desarrollo": {
             "controlmercaderia_api": "http://localhost:8080/controlmercaderia",
-            "controlmercaderia_token": "Gernerar con api/auth/login"
+            "controlmercaderia_token": "Generar con api/auth/login"
         },
         "produccion": {
             "controlmercaderia_api": "http://localhost:8080/controlmercaderia",
-            "controlmercaderia_token": "Gernerar con api/auth/login"
+            "controlmercaderia_token": "Generar con api/auth/login"
         }
     },
     "workbench.colorCustomizations": {

@@ -45,6 +45,44 @@ public class NotificacionEnviadaRest {
     }
 
 
+    @PostMapping(value = { BASE_API + "/pendienteVisto/{cuentaCore}"})
+    public Map<String, Object> pendienteVisto(
+            HttpServletRequest request,
+            @PathVariable(required = false) String cuentaCore
+            ) {
+
+        Integer[] idRecursoPermisoArray = { 6, 96 };
+        JeResponse jeResponse=new JeResponse("Listado correcto de Notificación Enviada","Error grave al listar Notificación Enviada");
+        UsuarioSesionInterno userSession = null;
+
+        try {
+
+            userSession = SesionJwt.getUserSesion(request, idRecursoPermisoArray);
+
+            // KGC-NOREPLACE-PRE-LISTAR-INI
+            JeBoot.verificarCuentaNula(cuentaCore, true);
+            userSession.esMismaCuenta(cuentaCore, true);
+            // KGC-NOREPLACE-PRE-LISTAR-FIN
+            if (jeResponse.sinErrorValidacion()) {
+                NotificacionEnviada ejemplo = new NotificacionEnviada();
+                ejemplo.setCuenta(cuentaCore);
+
+                jeResponse.putResultado("cantidad", notificacionEnviadaDao.pendienteVisto(userSession.getInfoAuditoria()));
+
+            }
+            // KGC-NOREPLACE-POS-LISTAR-INI
+            // KGC-NOREPLACE-POS-LISTAR-FIN
+
+            /* AUTOGENERADO _KGC_ */
+            jeResponse.prepararRetornoMap();
+        } catch (Exception e) {
+            jeResponse.prepararRetornoErrorMap(e);
+            if (!jeResponse.isWarning())log.error(jeResponse.getErrorForLog(), e);
+        }
+
+        return jeResponse.getRetornoMap();
+    }
+
     @PostMapping(value = { BASE_API + "/listarCuenta/{cuentaCore}"})
     public Map<String, Object> listarPorCuenta(
             HttpServletRequest request,
@@ -82,7 +120,6 @@ public class NotificacionEnviadaRest {
 
         return jeResponse.getRetornoMap();
     }
-
 
     @PostMapping( BASE_API + "/marcarComoVisto/{idNotificacionEnviada}" )
     public Map<String, Object> marcarComoVisto(
