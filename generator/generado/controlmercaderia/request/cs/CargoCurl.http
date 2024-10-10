@@ -12,7 +12,7 @@ curl --location --request POST '{{controlmercaderia_api}}/api/cs/cargo/listar' \
     "all": false,
     "page": 1,
     "limit": 10,
-    "orderBy": "nombre asc",
+    "orderBy": "cargo asc",
     "filterList":[],
     "atributos":"",
     "detalles":[],
@@ -27,8 +27,8 @@ curl --location --request POST '{{controlmercaderia_api}}/api/cs/cargo/agregar' 
 --header 'Authorization: Bearer {{controlmercaderia_token}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "cargo": "",
-	"nivelAcceso": "",
+    "cargo": "Prueba",
+	"nivelAcceso": "Test",
 	"activo": true,
     "descripcion": null
 }'

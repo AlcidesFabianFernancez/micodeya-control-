@@ -109,7 +109,7 @@
 
 
 ### Ejecutar proyecto
-- Ir al archivo [ControlmercaderiaApplication.java](src/main/java/com.micodeya.controlmercaderia.backend/ControlmercaderiaApplication.java) y ejecutar el main.
+- Ir al archivo [ControlmercaderiaApplication.java](src/main/java/com/micodeya/controlmercaderia/backend/ControlmercaderiaApplication.java) y ejecutar el main.
 - Probar si el servidor responde en `http://127.0.0.1:8080/micodeya/controlmercaderia/server/status`
 - Probar login [03-auth.http](docs/base/03-auth.http)
 
